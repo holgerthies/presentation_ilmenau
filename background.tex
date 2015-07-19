@@ -1,98 +1,9 @@
 \section{Background}
-\subsection{Computing on reals}
-
 \begin{frame}
-	% In real complexity theory real numbers are modeled by machines approximating them.\\
-	% \pause
-	% Call a function $d:\NN\to\ZZ$ an approximation function for $x$ if
-	% \[ \left|\frac{d(n)}{2^n}-x\right| \leq 2^{-n}. \]
-	% \pause
-	% we will often write $d_n$ for $d(n)$.
-	% \pause
-	\begin{definition}
-		A real number $x$ is called computable if there is a machine that computes approximations.
-	\end{definition}
-% 	\pause
-% 	It is called polynomial time computable, if there is a machine computing the values $d_n$ in time polynomial in $n$.
-% 	\pause
-% 	(This means the input $n$ is considered to be in unary).
-% \end{frame}
-
-%\begin{frame}
-\begin{minipage}{.45\textwidth}
-		\begin{figure}
-		\centering
-		\begin{tikzpicture}<2->
-				\path (0,0) rectangle (3.5,-2.7);
-			%x
-				\draw<2->[thick] (0,0) rectangle (3,-2);
-				\node<2-3> at (1.5,-1) {$x$};
-				\draw<2-> (.5,-2) -- (.5,-2.2);
-				\draw<2->[-triangle 90] (.5,-2.5) -- (.5,-2.2);
-				\node<2-> at (.25,-2.25) {$1^n$};
-				\draw<2->[-triangle 90] (2.5,-2) -- (2.5,-2.3);
-				\draw<2-> (2.5,-2.3) -- (2.5,-2.5);
-				\node<2-3> at (2.75,-2.25) {$d_n$};
-				\node<4-> at (2.85,-2.25) {$d_{n,i}$};
-				\node<4-> at (1.5,-1) {$(a_i)$};
-				\draw<4-> (1,-2) -- (1,-2.2);
-				\draw<4->[-triangle 90] (1,-2.5) -- (1,-2.2);
-				\node<4-> at (1.25,-2.25) {$1^i$};
-		\end{tikzpicture}
-		\end{figure}
-		\begin{itemize}
-			\item<3-> polynomial time computability
-		\end{itemize}
-	\end{minipage}
-	\hfill
-	\begin{minipage}{.45\textwidth}
-		\onslide<2->{$d_n$ rational approximations}
-		\only<2-4>{\[ \left|d_{n} - x\right|\leq 2^{-n}. \]}
-		\only<5->{\[ \left|d_{n,i} - a_i\right|\leq 2^{-n}. \]}
-	\end{minipage}
+	\frametitle{Algorithm Engineering}
+	\centering
+	\includegraphics[width=0.7\textwidth]{approach.png}
 \end{frame}
-\subsection{Real functions}
-
-\begin{frame}
-	\begin{minipage}{.45\textwidth}
-		\begin{tikzpicture}
-			\path (-1.7,1.7) rectangle (3.7,-5.2);
-			%x
-				\draw<2-> (0,0) rectangle (3,-2);
-				\node<2-> at (1.5,-1) {$x$};
-				\draw<1-> (1,-2) -- (1,-2.2);
-				\draw<1->[-triangle 90] (1,-2.5) -- (1,-2.2);
-				\node<2-> at (.5,-2.25) {$1^n$};
-				\draw<1->[-triangle 90] (2,-2) -- (2,-2.3);
-				\draw<1-> (2,-2.3) -- (2,-2.5);
-				\node<2-> at (2.5,-2.25) {$d_n$};
-			%f
-				\draw<1->[thick] (0,-2.5) rectangle (3,-4.5);
-				\node<1-> at (1.5,-3.5) {$f$};
-				\draw<1-> (1,-4.5) -- (1,-4.7);
-				\draw<1->[-triangle 90] (1,-5) -- (1,-4.7);
-				\node<3-> at (.5,-4.75) {$1^m$};
-				\draw<1->[-triangle 90] (2,-4.5) -- (2,-4.8);
-				\draw<1-> (2,-4.8) -- (2,-5);
-				\node<3-> at (2.5,-4.75) {$d'_m$};
-			%f(x)
-				\draw<3-> (-1.5,.5) rectangle (3.5,-4.5);
-				\node<3-> at (-.75,-2) {$f(x)$};
-		\end{tikzpicture}
-	\end{minipage}
-	\hfill
-	\begin{minipage}{.47\textwidth}
-		\begin{definition}
-			\small
-			A function $f:[0,1]\to\RR$ is called computable, \newline if there is a machine that,\newline when given oracle access to approximations to the argument $x$,\newline returns approximations to the value $f(x)$.
-		\end{definition}
-		\begin{itemize}
-			\item<4-> Multivariate functions have more oracles.
-			\item<5-> Computable functions are continuous.
-		\end{itemize}
-	\end{minipage}
-\end{frame}
-\subsection{iRRAM}
 \begin{frame}[<+->]
 \frametitle{iRRAM}
 \begin{itemize}[<+->]
@@ -102,6 +13,18 @@
 \item Other functions like abs, power, root, modulo, exp, log, sin, cos are also available
 \end{itemize}
 \end{frame}
+\begin{frame}
+  \frametitle{\irram: Real Number Representation}
+  \centering
+    \begin{tikzpicture}[remember picture, overlay]
+     \node[font=\huge] at (0,0) {$x \in [\textcolor{green}{d}-\textcolor{red}{e},\textcolor{green}{d}+\textcolor{red}{e}]$};
+     \draw<2-> [->, line width=3pt,color=green] (-1,0.4) -- (-1,2);
+     \node<2->[color=green,font=\large] at (-1,2.2) {Multiple precision floating point number};
+     \draw<3-> [->, line width=3pt,color=red] (2.4,-0.4) -- (2.4,-2);
+     \node<3->[color=red,font=\large] at (2.4,-2.2) {$e = z \cdot 2^p$ (p,z \code{long})};
+    \end{tikzpicture}
+\end{frame}
+
 \begin{frame}[<+->][fragile]
 \frametitle{Example: \irram}
 \begin{example}

@@ -1,11 +1,15 @@
 \documentclass[xcolor=pdftex,dvipsnames,table]{beamer}
-\usetheme{Darmstadt}
+\usecolortheme[accent=yellow,dark]{solarized}
 \usepackage{etex}
 \providecommand\thispdfpagelabel[1]{}
+\usepackage{color}
+\usepackage{xcolor}
 \usepackage[latin1]{inputenc}
+\usepackage[absolute,overlay]{textpos}
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{amsthm}
+\usepackage{times}
 \usepackage{listings}
 \usepackage{graphics}
 \usepackage{framed}
@@ -15,6 +19,7 @@
 \usepackage[outline]{contour}
 \contourlength{1.2pt}
 \usepackage[square,sort,comma,numbers]{natbib}
+\usepackage{hhline}
 \setbeamertemplate{footline}[frame number]
 \tikzset{
     onslide/.code args={<#1>#2}{% http://tex.stackexchange.com/a/6155/16595
@@ -93,12 +98,29 @@
 \author[A. Kawamura, F. Steinberg, H. Thies]{
 		Akitoshi Kawamura, Florian Steinberg, Holger Thies 
 }
-\institute[Theorietag]{
-  69. Workshop \"{u}ber Algorithmen und Komplexit\"{a}t, Technische Universit\"{a}t Ilmenau
+\institute[JAIST]{
+	Japan Institute of Science and Technology, Ishikawa Prefecture
 }
+
+\definecolor{solarized@base03}{HTML}{002B36}
+\definecolor{solarized@base02}{HTML}{073642}
+\definecolor{solarized@base01}{HTML}{586e75}
+\definecolor{solarized@base00}{HTML}{657b83}
+\definecolor{solarized@base0}{HTML}{839496}
+\definecolor{solarized@base1}{HTML}{93a1a1}
+\definecolor{solarized@base2}{HTML}{EEE8D5}
+\definecolor{solarized@base3}{HTML}{FDF6E3}
+\definecolor{solarized@yellow}{HTML}{B58900}
+\definecolor{solarized@orange}{HTML}{CB4B16}
+\definecolor{solarized@red}{HTML}{DC322F}
+\definecolor{solarized@magenta}{HTML}{D33682}
+\definecolor{solarized@violet}{HTML}{6C71C4}
+\definecolor{solarized@blue}{HTML}{268BD2}
+\definecolor{solarized@cyan}{HTML}{2AA198}
+\definecolor{solarized@green}{HTML}{859900}
 \begin{document}
 \setbeamercolor{note}{fg=black,bg=lightgray} 
-\date{May 28, 2015}
+\date{July 21, 2015}
 \frame{
 \titlepage
 }
