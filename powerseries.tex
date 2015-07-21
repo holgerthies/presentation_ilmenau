@@ -6,7 +6,7 @@
 \begin{lemma}
 Let $f : \C \to \C$ be analytic on the closed unit disc and $(a_m)_{m\in\N}$ its Taylor series around $0$.\\
 Then $R>1$ \pause and we can find two positive integers $k$ and $A$ with 
-\begin{itemize}
+\begin{itemize}[<+->]
 \item $r := \sqrt[k]{2}$ is strictly smaller than the radius of convergence $R$.
 \item $|a_m|r^m \leq A$ for all $m \in \N$.
 \end{itemize}
@@ -16,14 +16,14 @@ With $k$ and $A$ we can estimate
 $$ \left | \sum_{n \geq N} a_m z^n \right | \leq A\frac{(|z|/r)^N}{1-|z|/r} $$\pause
 Consider triples $\big((a_m)_{n \in \N}, k, A\big)$ as representation for functions analytic on the unit disc.
 \end{frame}
-%\begin{frame}
-%\frametitle{Finding $k$ and $A$}
-%\begin{itemize}
-%\item Choose $k$ appropriately and let $r := \sqrt{k}{2}$
-%\item $f_{|z|=r}$ is a continuous function on a compact domain, thus is bounded by some number $A$
-%\item By Cauchy Differentiation formula $$|a_n| \leq |\frac{1}{2\pi i}\int_{z=|r|} \frac{f(z)}{|z|^{n+1}} d \lambda| \leq \frac{A}{r^n}$$
-%\end{itemize}
-%\end{frame}
+\begin{frame}[<+->]
+\frametitle{Finding $k$ and $A$}
+\begin{itemize}[<+->]
+\item Choose $k$ appropriately and let $r := \sqrt[k]{2}$
+\item $f_{|z|=r}$ is a continuous function on a compact domain, thus is bounded by some number $A$
+\item By the Cauchy Differentiation formula $$|a_n| \leq |\frac{1}{2\pi i}\int_{z=|r|} \frac{f(z)}{|z|^{n+1}} d \lambda| \leq \frac{A}{r^n}$$
+\end{itemize}
+\end{frame}
 \begin{frame}[<+->]
 \frametitle{Analytic Functions and Computational Complexity}
 \begin{theorem}[Kawamura, R\"osnick, M\"uller, Ziegler (2013)]
@@ -123,20 +123,6 @@ We want to consider complex functions analytic on $[-1,1]$.\\
 %This means we can convert between those two representations in (parametrized) polynomial time.
 %\end{frame} 
 
-%\begin{frame}[<+->]
-%\frametitle{Computing Taylor series}
-%\begin{itemize}
-%\item To convert between those representations we have to compute the Taylor coefficients from a given function
-%\item Described in detail in (M\"uller87)
-%\item Want to approximate the coefficient $a_m$ with max. error $2^{-n}$
-%\item Approximate $f$ by Lagrangian interpolating polynomial $P_m(x) := \sum_{i=0}^{2m} f(x_i) \cdot L_{m,i}(x)$ with $L_{m,i}(x) = \prod_{j \neq i} \frac{x-x_j}{x_i-x_j} $ and $x_i = (i-m)\cdot h$
-%\item Differentiate this polynomial $P^{(m)}(0) = \sum_{i=0}^{2m} f(z_i)\cdot L_{m,i}^{(m)}(0)$
-%\item $\frac{1}{m!}P^{(m)}(0) = \sum_{i=0}^{2m} f(x_i)\frac{h^{-m}\cdot l_{m,i}}{i!(2m-i)!}$ with integers $l_{m,i}$
-%\item An error bound for this approximation can be computed
-%\end{itemize}
-%\end{frame}
-
-
 \begin{frame}
 \frametitle{Evaluation}
 \begin{minipage}{0.45\textwidth}
@@ -186,4 +172,23 @@ We want to consider complex functions analytic on $[-1,1]$.\\
     \draw<6> [radius = 1.85, color = red, dotted] (2.25,0) circle; 
 \end{tikzpicture}
 \end{minipage}
+\end{frame}
+
+\begin{frame}[<+->]
+\frametitle{Computing Taylor series}
+\begin{itemize}[<+->]
+\item For analytic continuation we have to compute the Taylor coefficients around some other point $x_0$
+\item The coefficient $b_d$ is given by $f^{(d)}(x_0)/d!$
+\item We can compute the derivative
+\end{itemize}
+\end{frame}
+\begin{frame}
+\frametitle{Evaluating the d'th derivative}
+\begin{itemize}[<+->]
+\item For sake of simplicity only consider one parameter $l$ s.t. $f \in C^\infty(\overline{R_l})$ and for all $z \in \overline{R_l}$ $| f(z) | \leq 2^l$
+\item It holds $f^{(d)}(z)/d! = \sum_{j=0}^\infty c_{j+d} {j+d \choose d}z^j$
+\item For $|z| \leq \frac{1}{2l}$ it holds $|\sum_{j=0}^\infty c_{j+d} {j+d \choose d}z^j| \leq l^d2^{l+1-J}(d+1){J+d \choose d}$
+\item $b_d$ can be computed iteratively, avoiding large intermediate results
+\item Evaluating the d-th derivative takes time $\mathcal{O} (n^3+l^3+d^3)$
+\end{itemize}
 \end{frame}

@@ -30,8 +30,9 @@
         onslide=<#2>{#3}
     }
 }
+
 \lstset{
-         basicstyle=\footnotesize\ttfamily, % Standardschrift
+         basicstyle=\small\ttfamily, % Standardschrift
          %numbers=left,               % Ort der Zeilennummern
          numberstyle=\tiny,          % Stil der Zeilennummern
          %stepnumber=2,               % Abstand zwischen den Zeilennummern
@@ -39,13 +40,11 @@
          tabsize=2,                  % Groesse von Tabs
          extendedchars=true,         %
          breaklines=true,            % Zeilen werden Umgebrochen
-         keywordstyle=\color{red},
-    		frame=b,         
- %        keywordstyle=[1]\textbf,    % Stil der Keywords
- %        keywordstyle=[2]\textbf,    %
- %        keywordstyle=[3]\textbf,    %
- %        keywordstyle=[4]\textbf,   \sqrt{\sqrt{}} %
-         %stringstyle=\color{white}\ttfamily, % Farbe der String
+         keywordstyle=\color{solarized@magenta},
+         stringstyle=\color{solarized@yan}\ttfamily,
+         identifierstyle=\color{solarized@blue},
+         commentstyle=\color{solarized@base01},
+         emphstyle=\color{solarized@red},
          showspaces=false,           % Leerzeichen anzeigen ?
          showtabs=false,             % Tabs anzeigen ?
          xleftmargin=3pt,
@@ -54,9 +53,12 @@
          framexbottommargin=3pt,
          language=C++,
          %backgroundcolor=\color{lightgray},
-         showstringspaces=false      % Leerzeichen in Strings anzeigen ?        
+         showstringspaces=false,      % Leerzeichen in Strings anzeigen ?        
+         escapeinside=||
  }
-
+\lstset{
+  emph={REAL, DYADIC, LAZY_BOOLEAN}
+}
  \usetikzlibrary{arrows}
  \usepackage{caption}
 \DeclareCaptionFont{white}{\color{white}}
